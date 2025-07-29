@@ -79,14 +79,12 @@ const LoginPage = () => {
 
           <p className="text-sm text-center text-gray-400">
             Belum punya akun?{" "}
-            <span
-              onClick={() =>
-                navigate("https://far-circle.netlify.app/register")
-              }
-              className="text-blue-400 hover:underline cursor-pointer"
+            <a
+              className="text-blue"
+              href="https://far-circle.netlify.app/register"
             >
-              Daftar
-            </span>
+              daftar
+            </a>
           </p>
         </form>
       </div>
