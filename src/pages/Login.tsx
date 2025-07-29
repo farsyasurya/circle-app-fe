@@ -80,7 +80,9 @@ const LoginPage = () => {
           <p className="text-sm text-center text-gray-400">
             Belum punya akun?{" "}
             <span
-              onClick={() => navigate("/register")}
+              onClick={() =>
+                navigate("https://far-circle.netlify.app/register")
+              }
               className="text-blue-400 hover:underline cursor-pointer"
             >
               Daftar
