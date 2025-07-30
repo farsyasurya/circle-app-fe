@@ -35,7 +35,10 @@ export default function Home() {
     [...incoming, ...existing].forEach((post) => {
       map.set(post.id, post);
     });
-    return Array.from(map.values());
+    return Array.from(map.values()).sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   };
 
   // 🔁 Fetch posts with pagination
