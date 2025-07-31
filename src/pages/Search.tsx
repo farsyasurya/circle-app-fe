@@ -3,6 +3,7 @@ import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "react-router-dom";
 
 interface User {
   id: number;
@@ -67,7 +68,15 @@ export default function SearchUser() {
               className="w-12 h-12 rounded-full object-cover border-2 border-gray-700 flex-shrink-0"
             />
             <div className="min-w-0">
-              <p className="font-semibold truncate">{user.name}</p>
+              <p className="font-semibold truncate">
+                {" "}
+                <Link
+                  to={`/profile/${user.id}`}
+                  className="text-lg font-semibold text-blue-400 hover:underline"
+                >
+                  {user.name}
+                </Link>
+              </p>
               <p className="text-gray-400 text-sm truncate">{user.email}</p>
             </div>
           </div>
