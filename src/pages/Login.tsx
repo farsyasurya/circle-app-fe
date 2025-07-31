@@ -92,6 +92,9 @@ const LoginPage = () => {
           />
         </div>
       </div>
+      <p className="text-xs text-center text-gray-500 mt-8">
+        © 2025 Muhammad Farsya Surya. All rights reserved.
+      </p>
     </div>
   );
 };
