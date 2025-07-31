@@ -80,6 +80,9 @@ const LoginPage = () => {
               Daftar sekarang
             </a>
           </p>
+          <p className="text-lg text-center text-blue-700 mt-8">
+            © 2025 Muhammad Farsya Surya. All rights reserved.
+          </p>
         </form>
 
         {/* Brand & Illustration */}
@@ -91,9 +94,6 @@ const LoginPage = () => {
             className="w-32 h-32 sm:w-40 sm:h-40 object-contain drop-shadow-xl"
           />
         </div>
-        <p className="text-lg text-center text-blue-700 mt-8">
-          © 2025 Muhammad Farsya Surya. All rights reserved.
-        </p>
       </div>
     </div>
   );
