@@ -134,7 +134,7 @@ const FollowToggleButton: React.FC<FollowToggleButtonProps> = ({
       onClick={isFollowing ? handleUnfollow : handleFollow}
       className={`px-4 py-1 rounded-md font-semibold text-sm ${
         isFollowing
-          ? "bg-red hover:bg-gray-200 text-white"
+          ? "bg-red border border-white-100 hover:bg-gray-200 text-white"
           : "bg-blue-600 hover:bg-blue-700 text-white"
       }`}
     >
