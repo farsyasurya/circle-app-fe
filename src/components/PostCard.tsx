@@ -13,6 +13,7 @@ import CommentDialog from "@/components/CommentDialog";
 import { socket } from "@/hooks/socket";
 import { setLikeData, toggleLike } from "@/redux/likeSlice";
 import type { RootState } from "@/redux/store";
+import { Link } from "react-router-dom";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
@@ -113,7 +114,14 @@ export default function PostCard({ post, currentUserId }: PostCardProps) {
         <div className="flex items-center gap-3">
           <UserAvatar name={post.user.name} avatar={post.user.avatar} />
           <div>
-            <p className="text-sm font-semibold">{post.user.name}</p>
+            <p className="text-sm font-semibold">
+              <Link
+                to={`/profile/${post.user.id}`}
+                className="text-lg font-semibold text-blue-400 hover:underline"
+              >
+                {post.user.name}
+              </Link>
+            </p>
             <p className="text-xs text-gray-400">
               {dayjs(post.createdAt).fromNow()}
             </p>
