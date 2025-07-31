@@ -153,7 +153,7 @@ export default function MainLayout() {
       <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
           onClick={() => setSidebarOpen(true)}
-          className="text-white text-3xl"
+          className="text-white text-3xl ml-4"
         >
           ☰
         </button>
