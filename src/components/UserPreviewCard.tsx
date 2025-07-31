@@ -6,6 +6,7 @@ import FollowersFollowingList from "./FollowersFollowingList";
 import type { UserPreviewData } from "@/types/userPreviewData";
 import PostCard from "./PostCard";
 import type { RootState } from "@/redux/store";
+import FollowButton from "./FollowButton";
 
 const TABS = ["posts", "followers", "following"] as const;
 type Tab = (typeof TABS)[number];
@@ -103,10 +104,15 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
       {renderStats()}
 
       {/* Edit Button */}
-      {isOwnProfile && (
+      {isOwnProfile ? (
         <div className="mb-4">
           <EditProfileDialog user={user} />
         </div>
+      ) : (
+        <FollowButton
+          targetUserId={user.id}
+          currentUserId={currentUserId as number}
+        />
       )}
 
       {/* Tabs */}
