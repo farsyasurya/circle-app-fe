@@ -15,7 +15,7 @@ export default function LikeButton({ liked, count, onToggle }: Props) {
       }`}
     >
       {liked ? <AiFillHeart size={16} /> : <AiOutlineHeart size={16} />}
-      <span>{count} likes</span>
+      <span>{count}</span>
     </button>
   );
 }

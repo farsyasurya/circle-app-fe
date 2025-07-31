@@ -163,7 +163,6 @@ export default function PostCard({ post, currentUserId }: PostCardProps) {
           trigger={
             <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
               <AiOutlineComment size={18} />
-              <span>Komentar</span>
             </button>
           }
         />
