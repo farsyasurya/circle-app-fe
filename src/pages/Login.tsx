@@ -91,10 +91,10 @@ const LoginPage = () => {
             className="w-32 h-32 sm:w-40 sm:h-40 object-contain drop-shadow-xl"
           />
         </div>
+        <p className="text-lg text-center text-blue-700 mt-8">
+          © 2025 Muhammad Farsya Surya. All rights reserved.
+        </p>
       </div>
-      <p className="text-xs text-center text-gray-500 mt-8">
-        © 2025 Muhammad Farsya Surya. All rights reserved.
-      </p>
     </div>
   );
 };

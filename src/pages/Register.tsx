@@ -135,10 +135,10 @@ export default function RegisterPage() {
             </Link>
           </p>
         </form>
+        <p className="text-lg text-center text-blue-700 mt-8">
+          © 2025 Muhammad Farsya Surya. All rights reserved.
+        </p>
       </div>
-      <p className="text-xs text-center text-gray-500 mt-8">
-        © 2025 Muhammad Farsya Surya. All rights reserved.
-      </p>
     </div>
   );
 }
