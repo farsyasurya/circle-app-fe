@@ -24,6 +24,7 @@ export default function MainLayout() {
   const navigate = useNavigate();
   const [, setSelectedPostId] = useState<number | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -80,9 +81,33 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-black text-white relative pl-64">
-      {/* Sidebar */}
-      <aside className="fixed top-0 left-0 w-64 h-screen bg-[#0d0d0d] p-6 border-r border-gray-800 shadow-lg z-30 overflow-y-auto">
+    <div className="flex min-h-screen bg-black text-white relative">
+      {/* Hamburger Button (Mobile) */}
+      <div className="fixed top-4 left-4 z-50 md:hidden">
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="text-white text-3xl"
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* Sidebar (Drawer on mobile) */}
+      <aside
+        className={`fixed top-0 left-0 z-40 h-full w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg p-6 overflow-y-auto transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+        md:translate-x-0 md:static md:block`}
+      >
+        {/* Close Button (Mobile only) */}
+        <div className="flex justify-end mb-4 md:hidden">
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="text-white text-xl"
+          >
+            ✕
+          </button>
+        </div>
+
         <div className="flex items-center mb-6 px-2">
           <img src="/fylo.png" alt="Logo" className="w-12 h-12 mr-3" />
           <h1 className="text-3xl font-extrabold text-blue-400">Fylo</h1>
@@ -136,8 +161,8 @@ export default function MainLayout() {
       </aside>
 
       {/* Main Content */}
-      <div className="relative flex-1 overflow-hidden">
-        <main className="p-8 h-screen overflow-y-auto">
+      <div className="flex-1 md:pl-64">
+        <main className="p-4 md:p-8 h-screen overflow-y-auto">
           <Outlet
             context={{
               handleCommentClick,
@@ -149,7 +174,10 @@ export default function MainLayout() {
         </main>
       </div>
 
-      <UserSidebar />
+      {/* Right Sidebar tetap hanya di desktop */}
+      <div className="hidden lg:block">
+        <UserSidebar />
+      </div>
     </div>
   );
 }
