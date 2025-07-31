@@ -88,9 +88,7 @@ const FollowersFollowingList: React.FC<Props> = ({ userId, activeTab }) => {
           <span className="text-white font-medium text-sm sm:text-base truncate">
             {data.user.name}
           </span>
-          <span className="text-white font-medium text-sm sm:text-base truncate">
-            {data.user.email}
-          </span>
+          <p className="text-gray-400 text-xs truncate">{data.user.email}</p>
         </div>
 
         {data.user.id !== currentUserId && (
