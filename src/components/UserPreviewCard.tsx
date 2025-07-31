@@ -104,15 +104,14 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
       {renderStats()}
 
       {/* Edit Button */}
-      {isOwnProfile ? (
+      {isOwnProfile && (
         <div className="mb-4">
           <EditProfileDialog user={user} />
         </div>
-      ) : (
-        <FollowButton
-          targetUserId={user.id}
-          currentUserId={currentUserId as number}
-        />
+      )}
+
+      {!isOwnProfile && currentUserId !== null && (
+        <FollowButton targetUserId={user.id} currentUserId={currentUserId} />
       )}
 
       {/* Tabs */}
