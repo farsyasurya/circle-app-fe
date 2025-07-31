@@ -7,6 +7,7 @@ interface FollowData {
   user: {
     id: number;
     name: string;
+    email: string;
     avatar: string | null;
   };
 }
@@ -86,6 +87,9 @@ const FollowersFollowingList: React.FC<Props> = ({ userId, activeTab }) => {
           />
           <span className="text-white font-medium text-sm sm:text-base truncate">
             {data.user.name}
+          </span>
+          <span className="text-white font-medium text-sm sm:text-base truncate">
+            {data.user.email}
           </span>
         </div>
 
