@@ -82,7 +82,7 @@ export default function MainLayout() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr_320px] min-h-screen bg-black text-white relative">
-      {/* Sidebar Mobile Toggle */}
+      {/* Sidebar Mobile Toggle Button */}
       <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
           onClick={() => setSidebarOpen(true)}
@@ -161,7 +161,7 @@ export default function MainLayout() {
       </aside>
 
       {/* Konten Tengah */}
-      <main className="overflow-y-auto max-h-screen px-4 py-6 lg:px-8 lg:py-8">
+      <main className="overflow-y-auto px-4 pt-4 pb-20 sm:pt-6 sm:pb-24 lg:px-8 lg:py-8 max-h-screen">
         <Outlet
           context={{
             handleCommentClick,
