@@ -3,7 +3,6 @@ import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import FollowToggleButton from "../components/FollowButton";
 
 interface User {
   id: number;
@@ -12,22 +11,12 @@ interface User {
   avatar?: string | null;
 }
 
-function getUserIdFromToken(token: string): number | null {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload.userId ?? null;
-  } catch {
-    return null;
-  }
-}
-
 export default function SearchUser() {
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem("token");
-  const currentUserId = token ? getUserIdFromToken(token) : null;
 
   useEffect(() => {
     fetchUsers(); // initial fetch
@@ -82,15 +71,6 @@ export default function SearchUser() {
               <p className="text-gray-400 text-sm truncate">{user.email}</p>
             </div>
           </div>
-
-          {currentUserId && currentUserId !== user.id && (
-            <div className="ml-auto">
-              <FollowToggleButton
-                targetUserId={user.id}
-                currentUserId={currentUserId}
-              />
-            </div>
-          )}
         </CardContent>
       </Card>
     );
