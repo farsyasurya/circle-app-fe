@@ -57,7 +57,7 @@ export default function SearchUser() {
 
     return (
       <Card key={user.id} className="bg-black  text-white">
-        <CardContent className="flex flex-nowrap items-center justify-between gap-1 py-1 px-1 sm:px-1">
+        <CardContent className="flex flex-nowrap items-center justify-between gap-3 py-1 px-1 sm:px-1">
           <div className="flex items-center gap-1 min-w-0">
             <img
               src={avatarSrc}
