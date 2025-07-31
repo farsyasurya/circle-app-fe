@@ -70,24 +70,26 @@ export default function SearchUser() {
         key={user.id}
         className="bg-[#111113] border border-gray-700 text-white"
       >
-        <CardContent className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4 px-4 sm:px-6">
-          <div className="flex items-center gap-4">
+        <CardContent className="flex flex-nowrap items-center justify-between gap-4 py-4 px-4 sm:px-6">
+          <div className="flex items-center gap-4 min-w-0">
             <img
               src={avatarSrc}
               alt={user.name}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-gray-700"
+              className="w-12 h-12 rounded-full object-cover border-2 border-gray-700 flex-shrink-0"
             />
-            <div className="text-sm sm:text-base">
-              <p className="font-semibold">{user.name}</p>
-              <p className="text-gray-400 text-xs sm:text-sm">{user.email}</p>
+            <div className="min-w-0">
+              <p className="font-semibold truncate">{user.name}</p>
+              <p className="text-gray-400 text-sm truncate">{user.email}</p>
             </div>
           </div>
 
           {currentUserId && currentUserId !== user.id && (
-            <FollowToggleButton
-              targetUserId={user.id}
-              currentUserId={currentUserId}
-            />
+            <div className="ml-auto">
+              <FollowToggleButton
+                targetUserId={user.id}
+                currentUserId={currentUserId}
+              />
+            </div>
           )}
         </CardContent>
       </Card>
