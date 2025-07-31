@@ -3,7 +3,7 @@ import { useNavigate, Outlet, Link } from "react-router-dom";
 import AddPostDialog from "../components/addPost";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import UserSidebar from "@/components/UserProfileSidebar";
 
 interface Post {
@@ -52,7 +52,9 @@ export default function MainLayout() {
   };
 
   useEffect(() => {
-    const socket = io("https://circle-app-be-production.up.railway.app");
+    const socket: Socket = io(
+      "https://circle-app-be-production.up.railway.app"
+    );
 
     socket.on("newPost", (newPost: Post) => {
       setPosts((prev) => {
@@ -81,7 +83,6 @@ export default function MainLayout() {
     );
   };
 
-  // Close sidebar when click outside (on mobile)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -93,12 +94,15 @@ export default function MainLayout() {
         setSidebarOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [sidebarOpen]);
+
+  const handleNavClick = () => {
+    if (window.innerWidth < 1024) setSidebarOpen(false);
+  };
 
   return (
     <div className="bg-black text-white min-h-screen relative">
@@ -106,13 +110,13 @@ export default function MainLayout() {
       <aside
         ref={sidebarRef}
         className={`fixed top-0 left-0 z-40 h-screen w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg transition-transform duration-300 ease-in-out transform
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-        lg:translate-x-0 lg:block`}
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+          lg:translate-x-0 lg:block`}
       >
         <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button
             onClick={() => setSidebarOpen(false)}
-            className="text-white text-2xl ml-50"
+            className="text-white text-2xl"
           >
             ✕
           </button>
@@ -126,24 +130,29 @@ export default function MainLayout() {
         <nav className="flex flex-col space-y-2 px-4">
           <Link
             to="/"
+            onClick={handleNavClick}
             className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
             🏠 <span>Home</span>
           </Link>
           <Link
             to="/search"
+            onClick={handleNavClick}
             className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
             🔍 <span>Search</span>
           </Link>
           <Link
             to="/profile"
+            onClick={handleNavClick}
             className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
             👤 <span>Profile</span>
           </Link>
 
-          <AddPostDialog />
+          <div onClick={handleNavClick}>
+            <AddPostDialog />
+          </div>
 
           <button
             onClick={() => {
@@ -190,7 +199,6 @@ export default function MainLayout() {
 
       {/* Main dan Sidebar Kanan */}
       <div className="lg:pl-[250px] lg:pr-[320px]">
-        {/* Main content */}
         <main className="px-4 pt-20 pb-24 sm:px-6 sm:pt-24 lg:pt-10 lg:pb-10">
           <Outlet
             context={{
