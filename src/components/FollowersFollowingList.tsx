@@ -140,7 +140,7 @@ const FollowersFollowingList: React.FC<Props> = ({ userId, activeTab }) => {
   };
 
   return (
-    <div className="bg-[#121212] p-4 rounded-xl border border-gray-800 max-w-md w-full mx-auto">
+    <div className="bg-[#121212] p-1 rounded-xl border border-gray-800 max-w-md w-full mx-auto">
       {renderContent()}
     </div>
   );
