@@ -81,9 +81,9 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-black text-white relative">
-      {/* Hamburger Button (Mobile) */}
-      <div className="fixed top-4 left-4 z-50 md:hidden">
+    <div className="flex flex-col lg:flex-row bg-black text-white min-h-screen overflow-hidden relative">
+      {/* Sidebar Mobile Button */}
+      <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
           onClick={() => setSidebarOpen(true)}
           className="text-white text-3xl"
@@ -92,14 +92,14 @@ export default function MainLayout() {
         </button>
       </div>
 
-      {/* Sidebar (Drawer on mobile) */}
+      {/* Sidebar (Drawer) */}
       <aside
         className={`fixed top-0 left-0 z-40 h-full w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg p-6 overflow-y-auto transform transition-transform duration-300 ease-in-out
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-        md:translate-x-0 md:static md:block`}
+        lg:translate-x-0 lg:static lg:block`}
       >
         {/* Close Button (Mobile only) */}
-        <div className="flex justify-end mb-4 md:hidden">
+        <div className="flex justify-end mb-4 lg:hidden">
           <button
             onClick={() => setSidebarOpen(false)}
             className="text-white text-xl"
@@ -161,21 +161,19 @@ export default function MainLayout() {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 md:pl-64">
-        <main className="p-4 md:p-8 h-screen overflow-y-auto">
-          <Outlet
-            context={{
-              handleCommentClick,
-              posts,
-              setPosts,
-              updatePostCommentCount,
-            }}
-          />
-        </main>
-      </div>
+      <main className="flex-1 overflow-y-auto px-4 py-6 lg:px-8 lg:py-8 max-w-full lg:max-w-3xl mx-auto">
+        <Outlet
+          context={{
+            handleCommentClick,
+            posts,
+            setPosts,
+            updatePostCommentCount,
+          }}
+        />
+      </main>
 
-      {/* Right Sidebar tetap hanya di desktop */}
-      <div className="hidden lg:block">
+      {/* Right Sidebar (only on desktop) */}
+      <div className="hidden lg:block w-[320px] px-4 py-6">
         <UserSidebar />
       </div>
     </div>
