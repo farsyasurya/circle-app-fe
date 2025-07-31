@@ -3,6 +3,7 @@ import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import FollowToggleButton from "../components/FollowButton";
 import { Link } from "react-router-dom";
 
 interface User {
@@ -12,12 +13,22 @@ interface User {
   avatar?: string | null;
 }
 
+function getUserIdFromToken(token: string): number | null {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.userId ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export default function SearchUser() {
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem("token");
+  const currentUserId = token ? getUserIdFromToken(token) : null;
 
   useEffect(() => {
     fetchUsers(); // initial fetch
@@ -56,17 +67,16 @@ export default function SearchUser() {
       : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}`;
 
     return (
-      <Card key={user.id} className="bg-black  text-white">
-        <CardContent className="flex flex-nowrap items-center justify-between gap-3 py-1 px-1 sm:px-1">
-          <div className="flex items-center gap-1 min-w-0">
+      <Card key={user.id} className="bg-[#111113]   text-white">
+        <CardContent className="flex items-center justify-between gap-4 py-2 px-1">
+          <div className="flex items-center gap-4">
             <img
               src={avatarSrc}
               alt={user.name}
-              className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+              className="w-12 h-12 rounded-full object-cover "
             />
-            <div className="min-w-0">
-              <p className="font-semibold truncate">
-                {" "}
+            <div>
+              <p className="font-semibold">
                 <Link
                   to={`/profile/${user.id}`}
                   className="text-sm font-semibold text-blue-400 hover:underline"
@@ -74,25 +84,30 @@ export default function SearchUser() {
                   {user.name}
                 </Link>
               </p>
-              <p className="text-gray-400 text-sm truncate">{user.email}</p>
+              <p className="text-gray-400 text-sm">{user.email}</p>
             </div>
           </div>
+
+          {currentUserId && currentUserId !== user.id && (
+            <FollowToggleButton
+              targetUserId={user.id}
+              currentUserId={currentUserId}
+            />
+          )}
         </CardContent>
       </Card>
     );
   };
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-screen-md mx-auto text-white min-h-screen">
-      <h1 className="text-lg sm:text-xl font-semibold text-blue-400 mb-4">
-        Cari User
-      </h1>
+    <div className="p-6 max-w-4xl mx-auto text-white">
+      <h1 className="text-xl font-semibold text-blue-400 mb-4">Cari User</h1>
 
       <Input
         placeholder="Cari berdasarkan nama..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="bg-[#1f1f21] border border-gray-700 text-white mb-6"
+        className="bg-[#1f1f21] border  text-white mb-6"
       />
 
       <div className="space-y-4">

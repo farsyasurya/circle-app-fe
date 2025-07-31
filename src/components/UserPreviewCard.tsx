@@ -6,7 +6,6 @@ import FollowersFollowingList from "./FollowersFollowingList";
 import type { UserPreviewData } from "@/types/userPreviewData";
 import PostCard from "./PostCard";
 import type { RootState } from "@/redux/store";
-import FollowToggleButton from "./FollowButton";
 
 const TABS = ["posts", "followers", "following"] as const;
 type Tab = (typeof TABS)[number];
@@ -19,7 +18,6 @@ interface Props {
 
 export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>("posts");
-
   const currentUserId = useSelector(
     (state: RootState) => state.auth.user?.id || null
   );
@@ -37,7 +35,7 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
   );
 
   const renderStats = () => (
-    <div className="flex justify-between text-sm text-gray-400 mb-3">
+    <div className="text-sm text-gray-400 flex justify-between mb-2">
       <span>👥 {user.followersCount ?? 0} Pengikut</span>
       <span>🧭 {user.followingCount ?? 0} Mengikuti</span>
       <span>📝 {user.posts?.length ?? 0} Post</span>
@@ -50,10 +48,10 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
         <button
           key={tab}
           onClick={() => setActiveTab(tab)}
-          className={`flex-1 py-2 text-sm font-semibold transition-colors duration-150 ${
+          className={`flex-1 py-2 text-sm font-semibold ${
             activeTab === tab
               ? "border-b-2 border-blue-400 text-blue-300"
-              : "text-gray-400 hover:text-white"
+              : "text-gray-400"
           }`}
         >
           {tab === "posts"
@@ -72,12 +70,9 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
     }
 
     return (
-      <div className="space-y-3">
+      <div className="divide-y divide-gray-700 border border-gray-700 rounded-xl overflow-hidden">
         {user.posts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-[#1f1f21] border border-gray-700 rounded-xl px-4 py-3"
-          >
+          <div key={post.id} className="bg-[#1f1f21] px-4 py-3">
             <PostCard post={post} currentUserId={currentUserId} />
           </div>
         ))}
@@ -86,11 +81,11 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
   };
 
   return (
-    <div className="bg-[#1f1f21] border border-gray-700 rounded-2xl px-5 py-6 text-white w-full max-w-2xl mx-auto">
+    <div className="bg-[#1f1f21] border border-gray-700 rounded-xl p-4 text-white">
       {/* User Info */}
       <div className="flex items-center gap-4 mb-4">
         {renderAvatar()}
-        <div className="flex-1">
+        <div>
           <Link
             to={`/profile/${user.id}`}
             className="text-lg font-semibold text-blue-400 hover:underline"
@@ -104,30 +99,24 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
       {/* Stats */}
       {renderStats()}
 
-      {/* Edit Profile / Follow Toggle */}
-      <div className="mb-4">
-        {isOwnProfile ? (
+      {/* Edit Profile Button */}
+      {isOwnProfile && (
+        <div className="mb-4">
           <EditProfileDialog user={user} />
-        ) : (
-          currentUserId !== null && (
-            <FollowToggleButton
-              targetUserId={user.id}
-              currentUserId={currentUserId}
-            />
-          )
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Tabs */}
       {renderTabs()}
 
-      {/* Content */}
+      {/* Content Area */}
+      {/* Content Area */}
       <div className="mt-4">
         {activeTab === "posts" ? (
           renderPosts()
-        ) : (
+        ) : activeTab === "followers" || activeTab === "following" ? (
           <FollowersFollowingList userId={user.id} activeTab={activeTab} />
-        )}
+        ) : null}
       </div>
     </div>
   );
