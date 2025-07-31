@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 import AddPostDialog from "../components/addPost";
 import axios from "axios";
@@ -25,6 +25,7 @@ export default function MainLayout() {
   const [, setSelectedPostId] = useState<number | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -80,10 +81,30 @@ export default function MainLayout() {
     );
   };
 
+  // Close sidebar when click outside (on mobile)
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        sidebarOpen &&
+        window.innerWidth < 1024 &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target as Node)
+      ) {
+        setSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sidebarOpen]);
+
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen relative">
       {/* Sidebar Kiri */}
       <aside
+        ref={sidebarRef}
         className={`fixed top-0 left-0 z-40 h-screen w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg transition-transform duration-300 ease-in-out transform
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
         lg:translate-x-0 lg:block`}
@@ -148,6 +169,14 @@ export default function MainLayout() {
           </button>
         </nav>
       </aside>
+
+      {/* Overlay saat sidebar terbuka di mobile */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden"
+        />
+      )}
 
       {/* Tombol buka sidebar di mobile */}
       <div className="fixed top-4 left-4 z-50 lg:hidden">
