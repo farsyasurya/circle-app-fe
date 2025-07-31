@@ -81,16 +81,14 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
-      {/* Sidebar kiri (Drawer di mobile) */}
+    <div className="bg-black text-white min-h-screen">
+      {/* Sidebar Kiri */}
       <aside
-        className={`fixed z-40 top-0 left-0 h-full w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg transition-transform duration-300 ease-in-out transform
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-          lg:static lg:translate-x-0 lg:flex lg:flex-col lg:w-[250px] lg:sticky`}
+        className={`fixed top-0 left-0 z-40 h-screen w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg transition-transform duration-300 ease-in-out transform
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+        lg:translate-x-0 lg:block`}
       >
-        {/* Tombol Close (hanya untuk mobile) */}
-        <div className="flex items-center justify-between px-4 py-3 lg:hidden border-b border-gray-700">
-          <h1 className="text-xl font-bold">Menu</h1>
+        <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button
             onClick={() => setSidebarOpen(false)}
             className="text-white text-2xl"
@@ -151,7 +149,7 @@ export default function MainLayout() {
         </nav>
       </aside>
 
-      {/* Tombol Sidebar (mobile only) */}
+      {/* Tombol buka sidebar di mobile */}
       <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
           onClick={() => setSidebarOpen(true)}
@@ -161,20 +159,23 @@ export default function MainLayout() {
         </button>
       </div>
 
-      {/* Konten utama */}
-      <main className="flex-1 max-w-full overflow-y-auto px-4 pt-20 pb-24 sm:px-6 sm:pt-24 lg:pt-10 lg:pb-10">
-        <Outlet
-          context={{
-            handleCommentClick,
-            posts,
-            setPosts,
-            updatePostCommentCount,
-          }}
-        />
-      </main>
+      {/* Main dan Sidebar Kanan */}
+      <div className="lg:pl-[250px] lg:pr-[320px]">
+        {/* Main content */}
+        <main className="px-4 pt-20 pb-24 sm:px-6 sm:pt-24 lg:pt-10 lg:pb-10">
+          <Outlet
+            context={{
+              handleCommentClick,
+              posts,
+              setPosts,
+              updatePostCommentCount,
+            }}
+          />
+        </main>
+      </div>
 
-      {/* Sidebar kanan (desktop only) */}
-      <aside className="hidden lg:flex lg:flex-col w-[320px] sticky top-0 h-screen overflow-y-auto bg-neutral-900 px-4 py-6 border-l border-gray-800">
+      {/* Sidebar kanan */}
+      <aside className="hidden lg:block fixed top-0 right-0 w-[320px] h-screen overflow-y-auto bg-neutral-900 px-4 py-6 border-l border-gray-800">
         <UserSidebar />
       </aside>
     </div>
