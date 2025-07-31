@@ -67,13 +67,13 @@ export default function SearchUser() {
       : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}`;
 
     return (
-      <Card key={user.id} className="bg-[#111113]   text-white">
-        <CardContent className="flex items-center justify-between gap-4  px-3">
-          <div className="flex items-center gap-4">
+      <Card key={user.id} className="bg-[#111113] text-white">
+        <CardContent className="flex items-center justify-between px-3 py-3">
+          <div className="flex items-center gap-4 flex-1">
             <img
               src={avatarSrc}
               alt={user.name}
-              className="w-12 h-12 rounded-full object-cover "
+              className="w-12 h-12 rounded-full object-cover"
             />
             <div>
               <p className="font-semibold">

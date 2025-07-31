@@ -97,7 +97,7 @@ export default function RegisterPage() {
 
           <Input
             name="name"
-            placeholder="Nama Lengkap"
+            placeholder="Nama Lengkap , max.10 character"
             value={form.name}
             onChange={handleChange}
             className="bg-[#2a2a2a] text-white"
@@ -112,7 +112,7 @@ export default function RegisterPage() {
           <Input
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="Buat password anda..."
             value={form.password}
             onChange={handleChange}
             className="bg-[#2a2a2a] text-white"
