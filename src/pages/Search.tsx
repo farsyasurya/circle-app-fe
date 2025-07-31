@@ -68,7 +68,7 @@ export default function SearchUser() {
 
     return (
       <Card key={user.id} className="bg-[#111113]   text-white">
-        <CardContent className="flex items-center justify-between gap-4 py-2 px-1">
+        <CardContent className="flex items-center justify-between gap-4  px-3">
           <div className="flex items-center gap-4">
             <img
               src={avatarSrc}
