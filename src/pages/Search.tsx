@@ -68,23 +68,23 @@ export default function SearchUser() {
 
     return (
       <Card key={user.id} className="bg-[#111113] text-white">
-        <CardContent className="flex items-center justify-between px-3 py-3">
-          <div className="flex items-center gap-4 flex-1">
+        <CardContent className="flex items-center justify-between gap-4 px-3 py-2">
+          <div className="flex items-center gap-4 flex-1 overflow-hidden">
             <img
               src={avatarSrc}
               alt={user.name}
-              className="w-12 h-12 rounded-full object-cover"
+              className="w-12 h-12 rounded-full object-cover shrink-0"
             />
-            <div>
-              <p className="font-semibold">
+            <div className="min-w-0">
+              <p className="font-semibold text-sm text-blue-400 truncate">
                 <Link
                   to={`/profile/${user.id}`}
-                  className="text-sm font-semibold text-blue-400 hover:underline"
+                  className="hover:underline block truncate"
                 >
                   {user.name}
                 </Link>
               </p>
-              <p className="text-gray-400 text-sm">{user.email}</p>
+              <p className="text-gray-400 text-xs truncate">{user.email}</p>
             </div>
           </div>
 
