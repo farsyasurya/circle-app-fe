@@ -117,7 +117,7 @@ export default function PostCard({ post, currentUserId }: PostCardProps) {
             <p className="text-sm font-semibold">
               <Link
                 to={`/profile/${post.user.id}`}
-                className="text-lg font-semibold text-blue-400 hover:underline"
+                className="text-sm font-semibold text-blue-400 hover:underline"
               >
                 {post.user.name}
               </Link>
