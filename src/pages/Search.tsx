@@ -60,8 +60,8 @@ export default function SearchUser() {
         key={user.id}
         className="bg-[#111113] border border-gray-700 text-white"
       >
-        <CardContent className="flex flex-nowrap items-center justify-between gap-4 py-4 px-4 sm:px-6">
-          <div className="flex items-center gap-4 min-w-0">
+        <CardContent className="flex flex-nowrap items-center justify-between gap-1 py-1 px-1 sm:px-1">
+          <div className="flex items-center gap-1 min-w-0">
             <img
               src={avatarSrc}
               alt={user.name}
