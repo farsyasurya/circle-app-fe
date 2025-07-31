@@ -56,23 +56,20 @@ export default function SearchUser() {
       : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}`;
 
     return (
-      <Card
-        key={user.id}
-        className="bg-[#111113] border border-gray-700 text-white"
-      >
+      <Card key={user.id} className="bg-black  text-white">
         <CardContent className="flex flex-nowrap items-center justify-between gap-1 py-1 px-1 sm:px-1">
           <div className="flex items-center gap-1 min-w-0">
             <img
               src={avatarSrc}
               alt={user.name}
-              className="w-12 h-12 rounded-full object-cover border-2 border-gray-700 flex-shrink-0"
+              className="w-12 h-12 rounded-full object-cover flex-shrink-0"
             />
             <div className="min-w-0">
               <p className="font-semibold truncate">
                 {" "}
                 <Link
                   to={`/profile/${user.id}`}
-                  className="text-lg font-semibold text-blue-400 hover:underline"
+                  className="text-sm font-semibold text-blue-400 hover:underline"
                 >
                   {user.name}
                 </Link>
