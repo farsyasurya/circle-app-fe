@@ -145,7 +145,7 @@ export default function Home() {
   };
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 pt-5">
       {initialLoading ? (
         renderSkeletons()
       ) : posts.length > 0 ? (
