@@ -6,7 +6,7 @@ import FollowersFollowingList from "./FollowersFollowingList";
 import type { UserPreviewData } from "@/types/userPreviewData";
 import PostCard from "./PostCard";
 import type { RootState } from "@/redux/store";
-import FollowButton from "./FollowButton";
+import FollowToggleButton from "./FollowButton";
 
 const TABS = ["posts", "followers", "following"] as const;
 type Tab = (typeof TABS)[number];
@@ -19,6 +19,7 @@ interface Props {
 
 export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>("posts");
+
   const currentUserId = useSelector(
     (state: RootState) => state.auth.user?.id || null
   );
@@ -103,16 +104,19 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
       {/* Stats */}
       {renderStats()}
 
-      {/* Edit Button */}
-      {isOwnProfile && (
-        <div className="mb-4">
+      {/* Edit Profile / Follow Toggle */}
+      <div className="mb-4">
+        {isOwnProfile ? (
           <EditProfileDialog user={user} />
-        </div>
-      )}
-
-      {!isOwnProfile && currentUserId !== null && (
-        <FollowButton targetUserId={user.id} currentUserId={currentUserId} />
-      )}
+        ) : (
+          currentUserId !== null && (
+            <FollowToggleButton
+              targetUserId={user.id}
+              currentUserId={currentUserId}
+            />
+          )
+        )}
+      </div>
 
       {/* Tabs */}
       {renderTabs()}
