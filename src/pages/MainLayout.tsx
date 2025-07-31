@@ -81,54 +81,45 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr_320px] min-h-screen bg-black text-white relative">
-      {/* Sidebar Mobile Toggle Button */}
-      <div className="fixed top-4 left-4 z-50 lg:hidden">
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="text-white text-3xl"
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* Sidebar Kiri */}
+    <div className="flex min-h-screen bg-black text-white">
+      {/* Sidebar kiri (Drawer di mobile) */}
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg p-6 overflow-y-auto transform transition-transform duration-300 ease-in-out
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-        lg:translate-x-0 lg:static lg:block sticky top-0`}
+        className={`fixed z-40 top-0 left-0 h-full w-64 bg-[#0d0d0d] border-r border-gray-800 shadow-lg transition-transform duration-300 ease-in-out transform
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+          lg:static lg:translate-x-0 lg:flex lg:flex-col lg:w-[250px] lg:sticky`}
       >
-        {/* Tombol Close Mobile */}
-        <div className="flex justify-end mb-4 lg:hidden">
+        {/* Tombol Close (hanya untuk mobile) */}
+        <div className="flex items-center justify-between px-4 py-3 lg:hidden border-b border-gray-700">
+          <h1 className="text-xl font-bold">Menu</h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="text-white text-xl"
+            className="text-white text-2xl"
           >
             ✕
           </button>
         </div>
 
-        <div className="flex items-center mb-6 px-2">
-          <img src="/fylo.png" alt="Logo" className="w-12 h-12 mr-3" />
-          <h1 className="text-3xl font-extrabold text-blue-400">Fylo</h1>
+        <div className="px-4 py-6 flex items-center">
+          <img src="/fylo.png" alt="Logo" className="w-10 h-10 mr-3" />
+          <h1 className="text-2xl font-bold text-blue-400">Fylo</h1>
         </div>
 
-        <nav className="space-y-3">
+        <nav className="flex flex-col space-y-2 px-4">
           <Link
             to="/"
-            className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-[#1a1a1a] transition"
+            className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
             🏠 <span>Home</span>
           </Link>
           <Link
             to="/search"
-            className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-[#1a1a1a] transition"
+            className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
             🔍 <span>Search</span>
           </Link>
           <Link
             to="/profile"
-            className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-[#1a1a1a] transition"
+            className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
             👤 <span>Profile</span>
           </Link>
@@ -153,15 +144,25 @@ export default function MainLayout() {
                 }
               });
             }}
-            className="mt-4 text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-full transition-colors shadow"
+            className="mt-4 text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition"
           >
             Logout
           </button>
         </nav>
       </aside>
 
-      {/* Konten Tengah */}
-      <main className="overflow-y-auto px-4 pt-4 pb-20 sm:pt-6 sm:pb-24 lg:px-8 lg:py-8 max-h-screen">
+      {/* Tombol Sidebar (mobile only) */}
+      <div className="fixed top-4 left-4 z-50 lg:hidden">
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="text-white text-3xl"
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* Konten utama */}
+      <main className="flex-1 max-w-full overflow-y-auto px-4 pt-20 pb-24 sm:px-6 sm:pt-24 lg:pt-10 lg:pb-10">
         <Outlet
           context={{
             handleCommentClick,
@@ -172,8 +173,8 @@ export default function MainLayout() {
         />
       </main>
 
-      {/* Sidebar Kanan */}
-      <aside className="hidden lg:block sticky top-0 h-screen overflow-y-auto px-4 py-6 bg-neutral-900">
+      {/* Sidebar kanan (desktop only) */}
+      <aside className="hidden lg:flex lg:flex-col w-[320px] sticky top-0 h-screen overflow-y-auto bg-neutral-900 px-4 py-6 border-l border-gray-800">
         <UserSidebar />
       </aside>
     </div>
