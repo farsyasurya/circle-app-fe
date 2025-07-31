@@ -91,7 +91,7 @@ export default function MainLayout() {
         <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button
             onClick={() => setSidebarOpen(false)}
-            className="text-white text-2xl"
+            className="text-white text-2xl ml-30"
           >
             ✕
           </button>
@@ -153,7 +153,7 @@ export default function MainLayout() {
       <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
           onClick={() => setSidebarOpen(true)}
-          className="text-white text-3xl ml-4"
+          className="text-white text-3xl"
         >
           ☰
         </button>
