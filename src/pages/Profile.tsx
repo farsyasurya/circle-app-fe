@@ -85,7 +85,7 @@ export default function UserProfile() {
     return <div className="text-white p-6 sm:p-8">Data tidak ditemukan</div>;
 
   return (
-    <div className="px-4 py-6 sm:px-6 md:px-8 lg:px-10 max-w-4xl mx-auto text-gray-100">
+    <div className="px-1 py-1 sm:px-1 md:px-1 lg:px-10 max-w-4xl mx-auto text-gray-100">
       <UserPreviewCard user={userData} showPosts isOwnProfile={isOwnProfile} />
     </div>
   );
