@@ -35,7 +35,7 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
   );
 
   const renderStats = () => (
-    <div className="text-sm text-gray-400 flex justify-between mb-2">
+    <div className="flex justify-between text-sm text-gray-400 mb-3">
       <span>👥 {user.followersCount ?? 0} Pengikut</span>
       <span>🧭 {user.followingCount ?? 0} Mengikuti</span>
       <span>📝 {user.posts?.length ?? 0} Post</span>
@@ -48,10 +48,10 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
         <button
           key={tab}
           onClick={() => setActiveTab(tab)}
-          className={`flex-1 py-2 text-sm font-semibold ${
+          className={`flex-1 py-2 text-sm font-semibold transition-colors duration-150 ${
             activeTab === tab
               ? "border-b-2 border-blue-400 text-blue-300"
-              : "text-gray-400"
+              : "text-gray-400 hover:text-white"
           }`}
         >
           {tab === "posts"
@@ -70,9 +70,12 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
     }
 
     return (
-      <div className="divide-y divide-gray-700 border border-gray-700 rounded-xl overflow-hidden">
+      <div className="space-y-3">
         {user.posts.map((post) => (
-          <div key={post.id} className="bg-[#1f1f21] px-4 py-3">
+          <div
+            key={post.id}
+            className="bg-[#1f1f21] border border-gray-700 rounded-xl px-4 py-3"
+          >
             <PostCard post={post} currentUserId={currentUserId} />
           </div>
         ))}
@@ -81,11 +84,11 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
   };
 
   return (
-    <div className="bg-[#1f1f21] border border-gray-700 rounded-xl p-4 text-white">
+    <div className="bg-[#1f1f21] border border-gray-700 rounded-2xl px-5 py-6 text-white w-full max-w-2xl mx-auto">
       {/* User Info */}
       <div className="flex items-center gap-4 mb-4">
         {renderAvatar()}
-        <div>
+        <div className="flex-1">
           <Link
             to={`/profile/${user.id}`}
             className="text-lg font-semibold text-blue-400 hover:underline"
@@ -99,7 +102,7 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
       {/* Stats */}
       {renderStats()}
 
-      {/* Edit Profile Button */}
+      {/* Edit Button */}
       {isOwnProfile && (
         <div className="mb-4">
           <EditProfileDialog user={user} />
@@ -109,14 +112,13 @@ export default function UserPreviewCard({ user, isOwnProfile = false }: Props) {
       {/* Tabs */}
       {renderTabs()}
 
-      {/* Content Area */}
-      {/* Content Area */}
+      {/* Content */}
       <div className="mt-4">
         {activeTab === "posts" ? (
           renderPosts()
-        ) : activeTab === "followers" || activeTab === "following" ? (
+        ) : (
           <FollowersFollowingList userId={user.id} activeTab={activeTab} />
-        ) : null}
+        )}
       </div>
     </div>
   );
