@@ -1,5 +1,3 @@
-// components/posts/UserAvatar.tsx
-
 interface Props {
   name: string;
   avatar?: string | null;

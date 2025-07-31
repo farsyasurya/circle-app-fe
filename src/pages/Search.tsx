@@ -100,7 +100,7 @@ export default function SearchUser() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto text-white">
+    <div className="p-2 max-w-4xl mx-auto text-white">
       <h1 className="text-xl font-semibold text-blue-400 mb-4">Cari User</h1>
 
       <Input
