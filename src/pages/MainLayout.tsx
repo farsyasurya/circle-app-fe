@@ -116,17 +116,17 @@ export default function MainLayout() {
         <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700">
           {sidebarOpen ? (
             <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-white text-2xl "
-            >
-              ✕
-            </button>
-          ) : (
-            <button
               onClick={() => setSidebarOpen(true)}
               className="text-white text-3xl"
             >
               ☰
+            </button>
+          ) : (
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="text-white text-2xl "
+            >
+              ✕
             </button>
           )}
         </div>
