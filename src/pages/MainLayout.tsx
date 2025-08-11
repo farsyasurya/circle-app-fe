@@ -113,7 +113,7 @@ export default function MainLayout() {
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
           lg:translate-x-0 lg:block`}
       >
-        <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700 left-4">
+        <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700 ml-4">
           <button
             onClick={() => setSidebarOpen(false)}
             className="text-white text-2xl "
