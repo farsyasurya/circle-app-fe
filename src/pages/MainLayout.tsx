@@ -189,12 +189,16 @@ export default function MainLayout() {
 
       {/* Tombol buka sidebar di mobile */}
       <div className="fixed top-4 left-4 z-50 lg:hidden">
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="text-white text-3xl"
-        >
-          ☰
-        </button>
+        (if(sidebar === true)
+        {
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="text-white text-3xl"
+          >
+            ☰
+          </button>
+        }
+        )
       </div>
 
       {/* Main dan Sidebar Kanan */}
