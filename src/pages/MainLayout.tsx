@@ -113,20 +113,10 @@ export default function MainLayout() {
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
           lg:translate-x-0 lg:block`}
       >
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="text-white text-3xl"
-          >
-            ☰
-          </button>
-        </div>
-
-        {/* Tombol buka sidebar di mobile */}
-        <div className="fixed top-4 left-4 z-50 lg:hidden">
+        <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button
             onClick={() => setSidebarOpen(false)}
-            className="text-white text-2xl "
+            className="text-white text-2xl"
           >
             ✕
           </button>
@@ -196,6 +186,16 @@ export default function MainLayout() {
           className="fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden"
         />
       )}
+
+      {/* Tombol buka sidebar di mobile */}
+      <div className="fixed top-4 left-4 z-50 lg:hidden">
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="text-white text-3xl"
+        >
+          ☰
+        </button>
+      </div>
 
       {/* Main dan Sidebar Kanan */}
       <div className="lg:pl-[250px] lg:pr-[320px]">
