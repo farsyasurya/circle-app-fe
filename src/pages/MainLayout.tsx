@@ -114,25 +114,23 @@ export default function MainLayout() {
           lg:translate-x-0 lg:block`}
       >
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-          {sidebarOpen ? (
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="text-white text-3xl"
-            >
-              ☰
-            </button>
-          ) : (
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-white text-2xl "
-            >
-              ✕
-            </button>
-          )}
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="text-white text-3xl"
+          >
+            ☰
+          </button>
         </div>
 
         {/* Tombol buka sidebar di mobile */}
-        {/* <div className="fixed top-4 left-4 z-50 lg:hidden"></div> */}
+        <div className="fixed top-4 left-4 z-50 lg:hidden">
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="text-white text-2xl "
+          >
+            ✕
+          </button>
+        </div>
 
         <div className="px-4 py-6 flex items-center">
           <img src="/fylo.png" alt="Logo" className="w-10 h-10 mr-3" />
