@@ -133,21 +133,21 @@ export default function MainLayout() {
             onClick={handleNavClick}
             className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
-            🏠 <span>Home</span>
+            🏠 <span>Beranda</span>
           </Link>
           <Link
             to="/search"
             onClick={handleNavClick}
             className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
-            🔍 <span>Search</span>
+            🔍 <span>Cari</span>
           </Link>
           <Link
             to="/profile"
             onClick={handleNavClick}
             className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
-            👤 <span>Profile</span>
+            👤 <span>Profil</span>
           </Link>
 
           <div onClick={handleNavClick}>
@@ -157,13 +157,13 @@ export default function MainLayout() {
           <button
             onClick={() => {
               Swal.fire({
-                title: "Yakin ingin logout?",
+                title: "Yakin ingin keluar?",
                 text: "Kamu akan keluar dari akun ini.",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#d33",
                 cancelButtonColor: "#3085d6",
-                confirmButtonText: "Ya, logout",
+                confirmButtonText: "Ya, Keluar",
                 cancelButtonText: "Batal",
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -174,7 +174,7 @@ export default function MainLayout() {
             }}
             className="mt-4 text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition"
           >
-            Logout
+            Keluar
           </button>
         </nav>
       </aside>
