@@ -78,7 +78,8 @@ export default function RegisterPage() {
           />
           <h1 className="text-3xl font-bold mb-2">Fylo App</h1>
           <p className="text-center text-gray-400 text-base sm:text-lg">
-            Welcome! Join the community and start your journey with Fylo.
+            Selamat datang! Bergabunglah dengan komunitas dan mulailah
+            perjalanan Anda bersama Fylo.
           </p>
         </div>
 
@@ -125,7 +126,7 @@ export default function RegisterPage() {
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 transition-all duration-300"
           >
-            Register
+            Daftar
           </Button>
 
           <p className="text-sm text-center text-gray-400">
@@ -135,9 +136,6 @@ export default function RegisterPage() {
             </Link>
           </p>
         </form>
-        <p className="text-lg text-center text-blue-700 mt-8">
-          © 2025 Muhammad Farsya Surya. All rights reserved.
-        </p>
       </div>
     </div>
   );

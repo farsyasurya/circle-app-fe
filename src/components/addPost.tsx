@@ -55,7 +55,7 @@ export default function AddPostDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <button className="w-full block px-3 py-2 rounded-lg bg-blue-600 text-white text-center hover:bg-blue-700 transition">
-          ＋ Add Post
+          ＋ Tambah Postingan
         </button>
       </DialogTrigger>
 

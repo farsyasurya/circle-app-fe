@@ -152,7 +152,7 @@ export default function UserSidebar() {
             onClick={() => navigate("/profile")}
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-full text-sm font-semibold transition"
           >
-            Detail Profile
+            Detail Profil
           </button>
         ) : (
           <FollowButton
@@ -166,7 +166,7 @@ export default function UserSidebar() {
       {(isLoadingSuggestions || suggestedUsers.length > 0) && (
         <div className="px-4 pb-4">
           <h3 className="text-md font-semibold text-gray-200 mb-3">
-            Suggested for You
+            Disarankan untuk Anda
           </h3>
           <ul className="space-y-3">
             {isLoadingSuggestions

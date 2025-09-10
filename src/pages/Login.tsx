@@ -80,9 +80,6 @@ const LoginPage = () => {
               Daftar sekarang
             </a>
           </p>
-          <p className="text-lg text-center text-blue-700 mt-8">
-            © 2025 Muhammad Farsya Surya. All rights reserved.
-          </p>
         </form>
 
         {/* Brand & Illustration */}

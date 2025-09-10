@@ -138,7 +138,7 @@ const FollowToggleButton: React.FC<FollowToggleButtonProps> = ({
           : "bg-blue-600 hover:bg-blue-700 text-white"
       }`}
     >
-      {isFollowing ? "Unfoll" : showFollowBackOnly ? "FolBack" : "Follow"}
+      {isFollowing ? "mengikuti" : showFollowBackOnly ? "ikuti balik" : "ikuti"}
     </button>
   );
 };
